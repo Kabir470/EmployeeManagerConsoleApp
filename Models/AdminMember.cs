@@ -25,9 +25,9 @@ namespace EmPower.Models
             return "Admin";
         }
 
-        public void CreateDocument() => Console.WriteLine($"{Name} created a document.");
-        public void UpdateDocument() => Console.WriteLine($"{Name} updated a document.");
-        public void DeleteDocument() => Console.WriteLine($"{Name} deleted a document.");
-        public void ReadDocument() => Console.WriteLine($"{Name} read a document.");
+        public void CreateDocument() => Console.WriteLine($"{Name} Admin created a document.");
+        public void UpdateDocument() => Console.WriteLine($"{Name} Admin updated a document.");
+        public void DeleteDocument() => Console.WriteLine($"{Name} Admin deleted a document.");
+        public void ReadDocument() => Console.WriteLine($"{Name} Admin read a document.");
     }
 }

@@ -22,9 +22,9 @@ namespace EmPower.Models
         {
             return "HR";
         }
-        public void CreateDocument() => Console.WriteLine($"{Name} created a document.");
-        public void UpdateDocument() => Console.WriteLine($"{Name} updated a document.");
-        public void DeleteDocument() => Console.WriteLine($"{Name} deleted a document.");
-        public void ReadDocument() => Console.WriteLine($"{Name} read a document.");
+        public void CreateDocument() => Console.WriteLine($"{Name} HR created a document.");
+        public void UpdateDocument() => Console.WriteLine($"{Name} HR updated a document.");
+        public void DeleteDocument() => Console.WriteLine($"{Name} HR deleted a document.");
+        public void ReadDocument() => Console.WriteLine($"{Name} HR read a document.");
     }
 }
