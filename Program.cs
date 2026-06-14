@@ -9,10 +9,13 @@ using System.Globalization;
 var repo = new EmployeeRepository();
 var empService = new EmployeeService(repo);
 var empProfileService = new EmployeeProfileServices(repo); // <-- NEW
+var leaveRepo = new LeaveRepository();
+var leaveService = new LeaveService(leaveRepo, repo);
 
 // Give those single instances to our menus
 var adminMenu = new AdminMenuHandler(empService);
-var employeeMenu = new EmployeeMenuHandler(empProfileService); // <-- Pass the shared service
+var leaveRequestBase = new LeaveRequestBase(leaveService, leaveRepo);
+var employeeMenu = new EmployeeMenuHandler(empProfileService, leaveRequestBase); // <-- Pass the shared service
 
 // Give the menus to the login page
 var loginPage = new LoginPage(adminMenu, employeeMenu, repo);
