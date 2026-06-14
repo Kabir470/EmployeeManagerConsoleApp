@@ -27,6 +27,21 @@ namespace EmPower.Repository
 
         }
 
+        public void UpdateLeaveStatus(int leaveId, string newStatus)
+        {
+            var leave = GetLeaveByID(leaveId);
+            if (leave != null)
+            {
+                leave.Status = newStatus;
+                SaveData();
+                Console.WriteLine($"Leave request ID {leaveId} status updated to {newStatus}");
+            }
+            else
+            {
+                Console.WriteLine($"Leave request with ID {leaveId} not found.");
+            }
+        }
+
         public LeaveRequests GetLeaveByID(int leaveId) => leaveRequests.FirstOrDefault(l => l.LeaveID == leaveId);
         public List<LeaveRequests> GetLeaveByEmployeeID(int employeeId) 
             => leaveRequests.Where(l => l.EmployeeID == employeeId).ToList();

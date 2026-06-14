@@ -29,7 +29,7 @@ namespace EmPower.Services
             return emp.EmployeeID;
         }
 
-        public void SubmitLeaveRequest(int employeeID, DateTime startDate, DateTime endDate, string reason)
+        public void SubmitLeaveRequest(int employeeID, DateTime startDate, DateTime endDate, string reason, string status)
         {
             var leave = new Models.LeaveRequests
             {
@@ -38,11 +38,23 @@ namespace EmPower.Services
                 StartDate = startDate,
                 EndDate = endDate,
                 Reason = reason,
-                Status = "Pending"
+                Status = status
             };
             leaveRepo.AddLeaveRequest(leave);
         }
 
-        
+        //public void updateLeaveStatus(int leaveId, string newStatus)
+        //{
+        //    var leave = leaveRepo.GetLeaveByID(leaveId);
+        //    if (leave == null)
+        //    {
+        //        Console.WriteLine(" Leave request not found!");
+        //        return;
+        //    }
+        //    leave.Status = newStatus;
+        //    Console.WriteLine($"Leave ID {leaveId} status updated to: {newStatus}");
+        //}
+
+
     }
 }

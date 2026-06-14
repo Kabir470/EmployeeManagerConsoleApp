@@ -13,8 +13,8 @@ var leaveRepo = new LeaveRepository();
 var leaveService = new LeaveService(leaveRepo, repo);
 
 // Give those single instances to our menus
-var adminMenu = new AdminMenuHandler(empService);
 var leaveRequestBase = new LeaveRequestBase(leaveService, leaveRepo);
+var adminMenu = new AdminMenuHandler(empService, leaveRequestBase);
 var employeeMenu = new EmployeeMenuHandler(empProfileService, leaveRequestBase); // <-- Pass the shared service
 
 // Give the menus to the login page

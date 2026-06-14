@@ -32,7 +32,37 @@ namespace EmPower.Abstract
             DateTime endDate = DateTime.Parse("2025-02-10"); //= DateTime.Parse(Console.ReadLine());
             Console.Write("\nReason for leave: ");
             string reason = Console.ReadLine();
-            leaveService.SubmitLeaveRequest(empId, startDate, endDate, reason);
+            Console.Write("\nStatus (Pending/Approved/Rejected): ");
+            string status = "Pending";
+            leaveService.SubmitLeaveRequest(empId, startDate, endDate, reason, status);
+        }
+
+        public void UpdateLeaveStatus()
+        {
+            Console.Write("Enter Leave ID to update: ");
+            int leaveId = int.Parse(Console.ReadLine());
+            var leave = leaveRepo.GetLeaveByID(leaveId);
+            printLeaveDetails(leave);
+
+
+
+            int choice;
+            string status = "";
+            while (true)
+            {
+                Console.Write("Enter choice (1 for Pending, 2 for Approved, 3 for Rejected): ");
+                if (int.TryParse(Console.ReadLine(), out choice) && choice >= 1 && choice <= 3)
+                {
+                    if (choice == 1) status = "Pending";
+                    else if (choice == 2) status = "Approved";
+                    else status = "Rejected";
+                    break; // Valid input, exit the loop
+                }
+                Console.WriteLine("Invalid input! Please enter a number between 1 and 3.");
+            }
+            string? newStatus = status;
+            leaveRepo.UpdateLeaveStatus(leaveId, newStatus);
+            printLeaveDetails(leave);
         }
 
         public void printLeaveDetails(Models.LeaveRequests leave)
@@ -68,5 +98,6 @@ namespace EmPower.Abstract
             Console.WriteLine("Press enter to return.");
             Console.ReadLine();
         }
+
     }
 }
