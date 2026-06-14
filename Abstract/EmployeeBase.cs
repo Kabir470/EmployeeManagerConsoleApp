@@ -5,6 +5,7 @@ namespace EmPower.Abstract
     public abstract class EmployeeBase : IEmployee, ISalaryCalculation
     {
 
+
         private int employeeID;
         private string? name;
         private int salary;

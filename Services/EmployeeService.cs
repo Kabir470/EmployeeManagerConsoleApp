@@ -18,6 +18,10 @@ namespace EmPower.Services
             this.repo = repo;
         }
 
+        public EmployeeService()
+        {
+        }
+
         public void HireEmployee(string? role, string? name, int salary, string? dept, string? pos)
         {
             int id = repo.GenerateID();
@@ -27,10 +31,11 @@ namespace EmPower.Services
                 "Admin" => new AdminMember(id, name, salary, dept, pos),
                 "HR" => new HrMember(id, name, salary, dept, pos),
                 "Employee" => new Employee(id, name, salary, dept, pos),
+                "Intern" => new InternEmployee(id, name, salary, dept, pos),
                 _ => null
             };
 
-            if (emp == null) { Console.WriteLine("❌ Invalid role!"); return; }
+            if (emp == null) { Console.WriteLine(" Invalid role!"); return; }
             repo.AddEmployee(emp);
         }
 
@@ -41,6 +46,21 @@ namespace EmPower.Services
             if (all.Count == 0) { Console.WriteLine("No employees found."); return; }
             foreach (var emp in all)
                 emp.PrintDetails();
+        }
+
+        public void ViewProfile(int inputid)
+        {
+            var emp = repo.GetByID(inputid);
+
+            if (emp == null)
+            {
+                Console.WriteLine(" Employee not found!");
+                return;
+            }
+
+            Console.WriteLine("\n--- Employee Profile ---");
+            emp.PrintDetails();
+            Console.WriteLine("------------------------\n");
         }
     }
 }
